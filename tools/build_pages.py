@@ -107,6 +107,13 @@ ICON_A11Y = ('<svg class="pref-btn__icon" viewBox="0 0 24 24" aria-hidden="true"
              '<path d="M7.5 10l4.5 1 4.5-1M12 11v3.3l-2.4 4.2M12 14.3l2.4 4.2"/></g></svg>')
 
 
+def asset(path):
+    """Pfad mit Versionsstempel (Inhalts-Hash) – geänderte Dateien lädt der Browser neu statt aus dem Cache."""
+    import hashlib
+    digest = hashlib.md5((ROOT / path).read_bytes()).hexdigest()[:8]
+    return f"{path}?v={digest}"
+
+
 def layout(file, title, description, main_html, body_class="", nav_file=None):
     nav_file = nav_file or file
     nav = "".join(
@@ -133,7 +140,7 @@ def layout(file, title, description, main_html, body_class="", nav_file=None):
 <meta name="description" content="{description}">
 <link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
 <meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{asset("css/style.css")}">
 <!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
      Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
 <script>
@@ -145,7 +152,7 @@ def layout(file, title, description, main_html, body_class="", nav_file=None):
   }} catch (e) {{}}
 }})(document.documentElement);
 </script>
-<script defer src="js/main.js"></script>
+<script defer src="{asset("js/main.js")}"></script>
 </head>
 <body{bc}>
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
@@ -172,7 +179,7 @@ def layout(file, title, description, main_html, body_class="", nav_file=None):
     </div>
     <div class="site-footer__col">
       <p class="site-footer__label">{picto("oeffnungszeiten")}Öffnungszeiten</p>
-      <p>Dienstag–Sonntag: 11–17 Uhr</p>
+      <p><span class="nowrap">Dienstag–Sonntag:</span> <span class="nowrap">11–17 Uhr</span></p>
     </div>
     <nav class="site-footer__col footer-nav" aria-label="Rechtliches">
       <ul>{fnav}</ul>
@@ -261,7 +268,7 @@ def index():
 <aside class="container visit-box" aria-label="Öffnungszeiten">
   {picto("oeffnungszeiten")}
   <p class="visit-box__label">Öffnungszeiten:</p>
-  <p class="visit-box__hours">Dienstag–Sonntag: 11–17 Uhr</p>
+  <p class="visit-box__hours"><span class="nowrap">Dienstag–Sonntag:</span> <span class="nowrap">11–17 Uhr</span></p>
   <a class="button" href="tickets.html">Tickets</a>
 </aside>
 """
@@ -281,7 +288,7 @@ def placeholder_page(file, title, img, alt, impressions=()):
 </div>
 {row}
 """
-    return layout(file, title, f"{title} – Isabella-Edel-Museum Bremen.", main)
+    return layout(file, title, f"{title} – Isabella-Edel-Museum Bremen.", main, "page-" + file.removesuffix(".html"))
 
 
 # Künstlerinnen je Raum – nur Namen, die im Text des jeweiligen Raums genannt werden
@@ -329,7 +336,7 @@ def kuenstlerinnen():
             "Isabella Edel", "Zitat von Isabella Edel", cls="quote-band--end")}
 """
     return layout("kuenstlerinnen.html", "Künstlerinnen",
-                  "42 Künstlerinnen – von Käthe Kollwitz bis zu bisher übersehenen Malerinnen.", main)
+                  "42 Künstlerinnen – von Käthe Kollwitz bis zu bisher übersehenen Malerinnen.", main, "page-kuenstlerinnen")
 
 
 ROOMS = [
@@ -439,7 +446,7 @@ def gruenderin():
             label="Leitgedanke der Sammlung", cls="quote-band--end")}
 """
     return layout("gruenderin.html", "Die Gründerin",
-                  "Isabella Edel – Kunstmäzenin aus Bremen und Gründerin des Museums.", main)
+                  "Isabella Edel – Kunstmäzenin aus Bremen und Gründerin des Museums.", main, "page-gruenderin")
 
 
 def museumscafe():
@@ -451,7 +458,7 @@ def museumscafe():
     <p>Im Winter knistert ein Feuer im Kamin, im Sommer lädt unser kleines Gärtchen zum Verweilen ein.</p>
   </div>
   <aside class="split__aside card visit-card" aria-label="Ihr Besuch im Museumscafé">
-    <div class="visit-card__item">{picto("oeffnungszeiten")}<div><p class="visit-card__label">Öffnungszeiten:</p><p>Dienstag–Sonntag: 11–17 Uhr</p></div></div>
+    <div class="visit-card__item">{picto("oeffnungszeiten")}<div><p class="visit-card__label">Öffnungszeiten:</p><p><span class="nowrap">Dienstag–Sonntag:</span> <span class="nowrap">11–17 Uhr</span></p></div></div>
     <div class="visit-card__item">{picto("cafe")}<div><p class="visit-card__label">Museumscafé</p><p><a href="raeume.html#gebaeudeplan">Lage im Gebäudeplan</a></p></div></div>
   </aside>
 </div>
@@ -461,14 +468,14 @@ def museumscafe():
             label="Motto des Museumscafés", cls="quote-band--end")}
 """
     return layout("museumscafe.html", "Museumscafé",
-                  "Kaffee, selbst gebackener Kuchen und ein kleines Gärtchen im Museumscafé.", main)
+                  "Kaffee, selbst gebackener Kuchen und ein kleines Gärtchen im Museumscafé.", main, "page-museumscafe")
 
 
 def visit_aside():
     """Infokarte „Ihr Besuch“ (rechte Spalte auf Tickets- und Bestätigungsseite)."""
     return f"""<aside class="tickets__aside" aria-label="Ihr Besuch">
     <div class="card visit-card">
-      <div class="visit-card__item">{picto("oeffnungszeiten")}<div><p class="visit-card__label">Öffnungszeiten:</p><p>Dienstag–Sonntag: 11–17 Uhr</p></div></div>
+      <div class="visit-card__item">{picto("oeffnungszeiten")}<div><p class="visit-card__label">Öffnungszeiten:</p><p><span class="nowrap">Dienstag–Sonntag:</span> <span class="nowrap">11–17 Uhr</span></p></div></div>
       <div class="visit-card__item">{picto("tickets")}<div><p class="visit-card__label">Ticketkasse</p><p>Die Karten können an der Ticketkasse bei Abholung bezahlt werden.</p></div></div>
       <address class="visit-card__address">Isabella-Edel-Stiftung<br>Brixener Straße 5<br>28215 Bremen</address>
     </div>
@@ -565,7 +572,7 @@ def tickets_bestaetigung():
       <div class="ticket__stub">
         {picto("tickets")}
         <p>Die Karten können an der Ticketkasse bei Abholung bezahlt werden.</p>
-        <p><strong>Öffnungszeiten:</strong><br>Dienstag–Sonntag: 11–17 Uhr</p>
+        <p><strong>Öffnungszeiten:</strong><br><span class="nowrap">Dienstag–Sonntag:</span> <span class="nowrap">11–17 Uhr</span></p>
         <p class="ticket__address">Brixener Straße 5<br>28215 Bremen</p>
       </div>
     </article>

@@ -6,6 +6,19 @@
    Eigener Code, keine fremden Skripte oder Frameworks.
    ========================================================================== */
 
+/* Symbole für Bedienknöpfe: SVG statt Schriftzeichen – Schriftzeichen sitzen auf der
+   Grundlinie und wären im quadratischen Knopf nicht mittig. */
+const ICON = (d, filled = false) =>
+  `<svg class="btn-icon${filled ? ' btn-icon--filled' : ''}" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="${d}"/></svg>`;
+const ICONS = {
+  prev: ICON('M16 10H4M9 5l-5 5 5 5'),
+  next: ICON('M4 10h12M11 5l5 5-5 5'),
+  pause: ICON('M7 4.5v11M13 4.5v11'),
+  play: ICON('M6.5 4.5v11l9-5.5z', true),
+  close: ICON('M5 5l10 10M15 5L5 15'),
+  up: ICON('M10 16V4M5 9l5-5 5 5'),
+};
+
 var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
 /* ---------- Darstellung: Dunkler Modus & Barrierefreier Modus ----------
@@ -113,9 +126,9 @@ function initSlider(sliderRoot) {
     <ol class="slider__dots">${slides.map((s, i) =>
       `<li><button class="slider__dot" type="button" aria-label="Bild ${i + 1}: ${s.querySelector('.slider__title').textContent}"></button></li>`).join('')}
     </ol>
-    <button class="slider__btn" type="button" data-action="pause" aria-label="Automatischen Wechsel anhalten">❚❚</button>
-    <button class="slider__btn" type="button" data-action="prev" aria-label="Vorheriges Bild">←</button>
-    <button class="slider__btn" type="button" data-action="next" aria-label="Nächstes Bild">→</button>`;
+    <button class="slider__btn" type="button" data-action="pause" aria-label="Automatischen Wechsel anhalten">${ICONS.pause}</button>
+    <button class="slider__btn" type="button" data-action="prev" aria-label="Vorheriges Bild">${ICONS.prev}</button>
+    <button class="slider__btn" type="button" data-action="next" aria-label="Nächstes Bild">${ICONS.next}</button>`;
   sliderRoot.append(controls);
   const dots = [...controls.querySelectorAll('.slider__dot')];
   const pauseBtn = controls.querySelector('[data-action="pause"]');
@@ -159,7 +172,7 @@ function initSlider(sliderRoot) {
 
   function setUserPaused(value) {
     userPaused = value;
-    pauseBtn.textContent = value ? '▶' : '❚❚';
+    pauseBtn.innerHTML = value ? ICONS.play : ICONS.pause;
     pauseBtn.setAttribute('aria-label', value ? 'Automatischen Wechsel starten' : 'Automatischen Wechsel anhalten');
     start();
   }
@@ -524,12 +537,12 @@ function initLightbox() {
   dialog.className = 'lightbox';
   dialog.setAttribute('aria-label', 'Bildansicht');
   dialog.innerHTML = `
-    <button class="slider__btn lightbox__close" type="button" aria-label="Schließen">✕</button>
+    <button class="slider__btn lightbox__close" type="button" aria-label="Schließen">${ICONS.close}</button>
     <img class="lightbox__img" alt="">
     <div class="lightbox__bar">
-      <button class="slider__btn" type="button" data-step="-1" aria-label="Vorheriges Bild">←</button>
+      <button class="slider__btn" type="button" data-step="-1" aria-label="Vorheriges Bild">${ICONS.prev}</button>
       <span class="lightbox__count" aria-live="polite"></span>
-      <button class="slider__btn" type="button" data-step="1" aria-label="Nächstes Bild">→</button>
+      <button class="slider__btn" type="button" data-step="1" aria-label="Nächstes Bild">${ICONS.next}</button>
     </div>`;
   document.body.append(dialog);
   const img = dialog.querySelector('.lightbox__img');
@@ -581,7 +594,7 @@ function initToTop() {
   btn.className = 'to-top';
   btn.type = 'button';
   btn.setAttribute('aria-label', 'Nach oben');
-  btn.textContent = '↑';
+  btn.innerHTML = ICONS.up;
   document.body.append(btn);
 
   // sichtbar ab einer Bildschirmhöhe Scrollweg (auch nach Neuladen mit gemerkter Position)

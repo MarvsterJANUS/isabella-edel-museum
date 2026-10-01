@@ -44,6 +44,7 @@
   --space: 4rem;            /* vertikaler Abstand zwischen Sektionen */
   --bar: 6px;               /* Stilelement: violetter Balken aus dem Logo */
   --header-h: 5rem;
+  --logo-h: 3.25rem;        /* Logohöhe; Tickets- und Menü-Button übernehmen sie */
 }
 
 /* ---------- Dunkler Modus ----------
@@ -182,7 +183,7 @@ a:hover { color: var(--link-hover); }
   padding-block: 0.875rem;
 }
 
-.site-logo img { width: auto; height: 3.25rem; }
+.site-logo img { width: auto; height: var(--logo-h); }
 .site-logo .logo-dark { display: none; }
 :root[data-theme="dark"] .site-logo .logo-light { display: none; }
 :root[data-theme="dark"] .site-logo .logo-dark { display: block; }
@@ -201,7 +202,7 @@ a:hover { color: var(--link-hover); }
   min-height: 2.75rem;
   padding: 0.5rem 0.9rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 2px;
   background: transparent;
   color: var(--ink);
   font: 600 0.95rem var(--sans);
@@ -235,16 +236,18 @@ a:hover { color: var(--link-hover); }
 }
 .main-nav a:hover { color: var(--violet); }
 .main-nav a[aria-current="page"] { color: var(--violet); box-shadow: inset 0 -3px 0 var(--violet); }
-.main-nav .nav-cta { padding-inline: 1rem; background: var(--violet-bg); color: var(--white); }
+.main-nav .nav-cta { padding-inline: 1rem; border-radius: 2px; background: var(--violet-bg); color: var(--white); }
 .main-nav .nav-cta:hover { background: var(--violet-bg-hover); color: var(--white); }
 .main-nav .nav-cta[aria-current="page"] { box-shadow: none; color: var(--white); }
 
 /* Tickets-Button neben „Menü“: nur wenn das Menü eingeklappt ist (JS), unter 1400 px */
 .header-cta { display: none; }
 .js .header-cta {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  height: var(--logo-h);
   margin-left: auto;
-  padding: 0.6rem 1rem;
+  padding: 0 1.1rem;
   border-radius: 2px;
   background: var(--violet-bg);
   color: var(--white);
@@ -258,7 +261,8 @@ a:hover { color: var(--link-hover); }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.6rem 0.75rem;
+  height: var(--logo-h);
+  padding: 0 0.9rem;
   border: 1px solid var(--ink);
   border-radius: 2px;
   background: transparent;
@@ -267,6 +271,12 @@ a:hover { color: var(--link-hover); }
   cursor: pointer;
 }
 .nav-toggle[hidden] { display: none; }
+/* sehr schmale Geräte (< 375 px): Logo, Tickets und Menü bleiben in einer Zeile */
+@media (max-width: 374.98px) {
+  .site-header__inner { column-gap: 0.5rem; }
+  .js .header-cta { padding: 0 0.75rem; }
+  .nav-toggle { gap: 0.45rem; padding: 0 0.65rem; }
+}
 .nav-toggle__bars,
 .nav-toggle__bars::before,
 .nav-toggle__bars::after {
@@ -339,7 +349,7 @@ a:hover { color: var(--link-hover); }
   position: absolute;
   inset: auto 0 0 0;
   display: block;
-  padding: 5rem var(--gutter) 3.5rem;
+  padding: 5rem var(--gutter) calc(1rem + 44px + 1.75rem);   /* über Linien/Knöpfen */
   background: linear-gradient(to top, rgba(20, 16, 36, 0.82), rgba(20, 16, 36, 0));
 }
 .slider__title {
@@ -393,6 +403,10 @@ a:hover { color: var(--link-hover); }
 }
 .slider__controls > * { pointer-events: auto; }
 .slider__dots { display: flex; gap: 0.5rem; margin: 0 auto 0 0; padding: 0; list-style: none; }
+/* Linien auf mittlerer Höhe der Steuerknöpfe (44 px hohe Klickfläche, 3 px Linie mittig) */
+.slider__controls .slider__dots { align-self: stretch; }
+.slider__controls .slider__dot { position: relative; display: block; height: 44px; }
+.slider__controls .slider__dot::before { position: absolute; top: calc(50% - 1.5px); left: 0; right: 0; }
 .slider__dot {
   width: 2.75rem;
   height: 1.5rem;
@@ -404,14 +418,16 @@ a:hover { color: var(--link-hover); }
 .slider__dot::before { content: ""; display: block; height: 3px; background: rgba(255, 255, 255, 0.5); transition: background 0.2s ease; }
 .slider__dot:hover::before { background: rgba(255, 255, 255, 0.85); }
 .slider__dot:focus-visible { outline-color: var(--white); outline-offset: 2px; }
-.slider__dot[aria-current="true"]::before { background: var(--surface); }
+.slider__dot[aria-current="true"]::before { background: var(--white);  /* liegt auf dem Foto: immer weiß */ }
 .slider__btn {
   display: grid;
   place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 44px;               /* ganzzahlig: (44 − 2 − 20) / 2 = 11 px Abstand zum Symbol */
+  height: 44px;
+  padding: 0;
+  line-height: 0;
   border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
+  border-radius: 2px;
   background: rgba(20, 16, 36, 0.35);
   color: var(--white);
   font-size: 1.1rem;
@@ -419,11 +435,19 @@ a:hover { color: var(--link-hover); }
 }
 .slider__btn:hover { background: var(--violet-bg); border-color: var(--violet-bg); }
 .slider__btn:focus-visible { outline-color: var(--white); }
+.btn-icon { display: block; width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-icon--filled { fill: currentColor; stroke: none; }
 
 /* ---------- Seitenkopf der Unterseiten ---------- */
 .page-hero img { width: 100%; height: 13rem; height: clamp(13rem, 38vw, 30rem); object-fit: cover; object-position: center 40%; }
 .page-tickets .page-hero img { object-position: center 15%; }
 .page-rooms .page-hero img { object-position: center 45%; }
+.page-veranstaltungen .page-hero img { object-position: center 40%; }
+@media (min-width: 576px) { .page-veranstaltungen .page-hero img { object-position: center 20%; } }
+@media (min-width: 576px) { .page-kuenstlerinnen .page-hero img { object-position: center 28%; } }
+@media (min-width: 576px) { .page-museumscafe .page-hero img { object-position: center 50%; } }
+/* Smartphone: Gesicht der Gründerin ins Bild holen (Tablet/Desktop unverändert) */
+@media (max-width: 575.98px) { .page-gruenderin .page-hero img { object-position: 22% 30%; } }
 .page-intro { padding-top: 3rem; }
 .page-intro h1 { margin: 0; padding-left: 1rem; border-left: var(--bar) solid var(--violet); }
 
@@ -492,8 +516,9 @@ a:hover { color: var(--link-hover); }
 }
 .visit-box p { margin: 0; }
 .visit-box .picto { width: 2.75rem; height: 2.75rem; }
+.visit-box .button { margin-top: 1rem; }  /* Smartphone: Abstand zwischen Öffnungszeiten und Button */
 .visit-box__label { font-weight: 600; }
-.visit-box__hours { font-variant-numeric: lining-nums; font-family: var(--serif); font-size: 1.5rem; font-weight: 600; }
+.visit-box__hours { flex-basis: 100%; font-variant-numeric: lining-nums; font-family: var(--serif); font-size: 1.375rem; font-weight: 600; line-height: 1.3; }
 
 .card { background: var(--surface); border: 1px solid var(--line); border-radius: 2px; }
 .info-card { padding: 2rem; background: var(--surface); border: 1px solid var(--line); border-radius: 2px; }
@@ -571,10 +596,12 @@ a:hover { color: var(--link-hover); }
   z-index: 40;
   display: grid;
   place-items: center;
-  width: 3rem;
-  height: 3rem;
+  width: 48px;              /* ganzzahlig: (48 − 20) / 2 = 14 px rund um den Pfeil */
+  height: 48px;
+  padding: 0;
+  line-height: 0;
   border: 0;
-  border-radius: 50%;
+  border-radius: 2px;
   background: var(--violet-bg);
   color: var(--white);
   font-size: 1.25rem;
@@ -589,6 +616,7 @@ a:hover { color: var(--link-hover); }
 .to-top:hover { background: var(--violet-bg-hover); }
 
 /* ---------- Künstlerinnen ---------- */
+.nowrap { white-space: nowrap; }  /* z. B. „11–17 Uhr“ nicht trennen */
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Kunstwerk neben dem Text: unbeschnitten, ruhig gerahmt */
@@ -596,6 +624,7 @@ a:hover { color: var(--link-hover); }
 .artwork img { width: 100%; height: auto; }
 
 .artist-rooms { padding-bottom: var(--space); }
+.artist-rooms .section-title { margin-bottom: 2.5rem; }
 .artist-rooms__list { display: grid; gap: 2rem; margin: 0; padding: 0; list-style: none; }
 .artist-room { display: flex; flex-direction: column; padding: 2rem; }
 .artist-room__head { display: flex; gap: 1rem; align-items: flex-start; padding-bottom: 1.25rem; border-bottom: 1px solid var(--line); }
@@ -611,7 +640,8 @@ a:hover { color: var(--link-hover); }
 .plan { padding-block: 3rem 1.5rem; scroll-margin-top: var(--header-h); }
 .plan__heading { font-size: 1.5rem; font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); max-width: 28ch; }
 .plan__figure { margin: 0 0 2rem; }
-.plan__static { width: 100%; }
+/* < 576 px: Grafik läuft bis an die Bildschirmränder, damit sie größer wird */
+.plan__static { width: calc(100% + 2 * var(--gutter)); max-width: none; margin-inline: calc(-1 * var(--gutter)); }
 
 /* < 576 px: nur die statische Grafik, die Legende übernimmt die Navigation */
 .plan__interactive { display: none; }
@@ -651,9 +681,13 @@ a:hover { color: var(--link-hover); }
 /* Raum-Navigation: Rücksprung zum Plan + vorheriger/nächster Raum */
 .room__nav { display: flex; flex-direction: column; gap: 1.25rem; margin-top: 2.5rem; }
 .room__back { display: inline-flex; align-items: center; gap: 0.6rem; min-height: 2.75rem; font-weight: 600; }
-.room__back::before { content: "↑"; display: grid; place-items: center; flex: none; width: 2.25rem; height: 2.25rem; border: 1px solid currentColor; border-radius: 50%; }
+/* Quadratischer Rahmen (36 px) mit Pfeil (18 px, gleiche Form wie Slider/Nach-oben) in Linkfarbe */
+.room__back { position: relative; }
+.room__back::before { content: ""; flex: none; box-sizing: border-box; width: 36px; height: 36px; border: 1px solid currentColor; border-radius: 2px; }
+.room__back::after { content: ""; position: absolute; left: 9px; top: calc(50% - 9px); width: 18px; height: 18px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 16V4M5 9l5-5 5 5'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 16V4M5 9l5-5 5 5'/%3E%3C/svg%3E") center / contain no-repeat; }
 .room__pager { display: grid; gap: 0.75rem; }
-.room__pager-link { display: block; padding: 0.75rem 1rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-family: var(--serif); font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums; line-height: 1.25; text-decoration: none; }
+.room__pager-link { display: block; padding: 0.75rem 1rem; border: 1px solid var(--line); border-radius: 2px; background: var(--surface); color: var(--ink); font-family: var(--serif); font-size: 1.25rem; font-weight: 600; font-variant-numeric: lining-nums; line-height: 1.25; text-decoration: none; }
 .room__pager-link:hover { border-color: var(--violet); color: var(--violet); }
 .room__pager-label { display: block; color: var(--ink-soft); font-family: var(--sans); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
 .room__pager-link--prev .room__pager-label::before { content: "← "; }
@@ -827,13 +861,15 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
 @media (min-width: 576px) {
   :root { --gutter: 2.5rem; --space: 6rem; }
 
-  .site-logo img { height: 3.75rem; }
+  :root { --logo-h: 3.75rem; }
 
-  .slider__caption { padding: 6rem var(--gutter) 4.5rem; }
+  .slider__caption { padding: 6rem var(--gutter) calc(1rem + 44px + 2.25rem); }
   .slider__text { font-size: 1.25rem; }
 
   .split { grid-template-columns: 1fr 1fr; align-items: start; gap: 4rem; }
   .facts { column-gap: 2.5rem; }
+  .visit-box__hours { flex-basis: auto; font-size: 1.5rem; }
+  .visit-box .button { margin-top: 0; }
   .split--home { align-items: center; }
 
   .teasers__list { grid-template-columns: 1fr 1fr; gap: 3.5rem 2.5rem; }
@@ -853,7 +889,7 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
 
   .quote { padding-left: 2rem; }
 
-  /* Gebäudeplan: klickbare Variante, statische Grafik ausblenden */
+  /* Gebäudeplan ab Tablet: klickbare Variante, statische Grafik ausblenden */
   .plan__static { display: none; }
   .plan__interactive { display: block; }
   .plan__legend { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
@@ -888,7 +924,7 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
 
   /* Vollständige horizontale Navigation, kein Burger */
   .site-header__inner { flex-wrap: nowrap; padding-block: 1.25rem; }
-  .site-logo img { height: 4rem; }
+  :root { --logo-h: 4rem; }
   .nav-toggle, .nav-toggle:not([hidden]), .js .header-cta { display: none; }
   .main-nav, .js .main-nav {
     display: block;
@@ -916,7 +952,7 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
   .main-nav .nav-cta, .js .main-nav .nav-cta { padding: 0.6rem 1.5rem; }
 
   .slider__media img { height: min(78vh, 52rem); }
-  .slider__caption { padding: 10rem 0 6rem; }
+  .slider__caption { padding: 10rem 0 calc(2rem + 44px + 2.75rem); }
   .slider__caption > * { margin-left: max(var(--gutter), calc((100vw - 1320px) / 2)); }
   .slider__pager { left: max(var(--gutter), calc((100vw - 1320px) / 2)); bottom: 2rem; }
   .slider__controls { right: max(var(--gutter), calc((100vw - 1320px) / 2)); left: max(var(--gutter), calc((100vw - 1320px) / 2)); bottom: 2rem; }
