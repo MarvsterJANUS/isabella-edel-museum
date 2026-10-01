@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isabella-Edel-Museum</title>
+<meta name="description" content="Das Isabella-Edel-Museum in Bremen – Übersehene Frauen und ihre Werke.">
+<link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
+     Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
+<script>if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+<script defer src="js/main.js"></script>
+</head>
+<body class="page-home">
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="index.html"><img src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+    <a class="header-cta" href="tickets.html">Tickets</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
+      <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menü</span>
+    </button>
+    <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+      <ul><li><a href="index.html" aria-current="page">Startseite</a></li><li><a href="veranstaltungen.html">Veranstaltungen</a></li><li><a href="kuenstlerinnen.html">Künstlerinnen</a></li><li><a href="raeume.html">Räume</a></li><li><a href="gruenderin.html">Die Gründerin</a></li><li><a href="museumscafe.html">Museumscafé</a></li><li><a href="tickets.html" class="nav-cta">Tickets</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="inhalt">
+
+<section class="slider" aria-roledescription="Karussell" aria-label="Einblicke ins Museum">
+  <ul class="slider__track"><li class="slider__slide" id="folie-1" aria-roledescription="Folie" aria-label="1 von 3: Die Gründerin"><a class="slider__link" href="gruenderin.html"><picture class="slider__media"><source type="image/webp" srcset="img/gruenderin-640.webp 640w, img/gruenderin-1280.webp 1280w, img/gruenderin-2000.webp 2000w" sizes="100vw"><img src="img/gruenderin-1280.jpg" srcset="img/gruenderin-640.jpg 640w, img/gruenderin-1280.jpg 1280w, img/gruenderin-2000.jpg 2000w" sizes="100vw" width="1280" height="854" alt="Isabella Edel, lächelnde ältere Dame mit weißem Haar" fetchpriority="high"></picture><span class="slider__caption"><span class="slider__title">Die Gründerin</span><span class="slider__text">Jahrzehntelang hat Isabella Edel Kunstwerke gesammelt.</span></span></a><ol class="slider__pager" aria-label="Bildauswahl"><li><a class="slider__dot" href="#folie-1" aria-label="Bild 1: Die Gründerin" aria-current="true"></a></li><li><a class="slider__dot" href="#folie-2" aria-label="Bild 2: Räume"></a></li><li><a class="slider__dot" href="#folie-3" aria-label="Bild 3: Museumscafé"></a></li></ol></li><li class="slider__slide" id="folie-2" aria-roledescription="Folie" aria-label="2 von 3: Räume"><a class="slider__link" href="raeume.html"><picture class="slider__media"><source type="image/webp" srcset="img/besucherin-salon-640.webp 640w, img/besucherin-salon-1280.webp 1280w, img/besucherin-salon-2000.webp 2000w" sizes="100vw"><img src="img/besucherin-salon-1280.jpg" srcset="img/besucherin-salon-640.jpg 640w, img/besucherin-salon-1280.jpg 1280w, img/besucherin-salon-2000.jpg 2000w" sizes="100vw" width="1280" height="853" alt="Besucherin betrachtet goldgerahmte Gemälde in einem klassischen Ausstellungssaal" loading="lazy" decoding="async"></picture><span class="slider__caption"><span class="slider__title">Räume</span><span class="slider__text">Eine Auswahl aus über 300 Kunstwerken von 42 Künstlerinnen ist in vier Räumen zu sehen.</span></span></a><ol class="slider__pager" aria-label="Bildauswahl"><li><a class="slider__dot" href="#folie-1" aria-label="Bild 1: Die Gründerin"></a></li><li><a class="slider__dot" href="#folie-2" aria-label="Bild 2: Räume" aria-current="true"></a></li><li><a class="slider__dot" href="#folie-3" aria-label="Bild 3: Museumscafé"></a></li></ol></li><li class="slider__slide" id="folie-3" aria-roledescription="Folie" aria-label="3 von 3: Museumscafé"><a class="slider__link" href="museumscafe.html"><picture class="slider__media"><source type="image/webp" srcset="img/museumscafe-640.webp 640w, img/museumscafe-1280.webp 1280w, img/museumscafe-2000.webp 2000w" sizes="100vw"><img src="img/museumscafe-1280.jpg" srcset="img/museumscafe-640.jpg 640w, img/museumscafe-1280.jpg 1280w, img/museumscafe-2000.jpg 2000w" sizes="100vw" width="1280" height="854" alt="Gemütlicher Innenraum des Museumscafés mit Holztischen" loading="lazy" decoding="async"></picture><span class="slider__caption"><span class="slider__title">Museumscafé</span><span class="slider__text">Hinter jeder erfolgreichen Frau steht eine beeindruckende Menge Kaffee</span></span></a><ol class="slider__pager" aria-label="Bildauswahl"><li><a class="slider__dot" href="#folie-1" aria-label="Bild 1: Die Gründerin"></a></li><li><a class="slider__dot" href="#folie-2" aria-label="Bild 2: Räume"></a></li><li><a class="slider__dot" href="#folie-3" aria-label="Bild 3: Museumscafé" aria-current="true"></a></li></ol></li></ul>
+</section>
+
+<div class="container home-intro">
+  <h1 class="home-title">Das Isabella-Edel-Museum <span class="home-title__sub">– Übersehene Frauen und ihre Werke</span></h1>
+  <figure class="quote quote--large"><blockquote><p>„Natürlich finden wir Frauen in sämtlichen Museen: Als Besucherinnen. Und als Aktmodelle. Manchmal habe ich den Eindruck, als Frau kommt man dort am besten rein, wenn man nackt ist.“</p></blockquote><figcaption>Isabella Edel</figcaption></figure>
+</div>
+
+<section class="container split split--home" aria-labelledby="macherin">
+  <div class="split__media"><picture><source type="image/webp" srcset="img/malerin-640.webp 640w, img/malerin-1280.webp 1280w, img/malerin-2000.webp 2000w" sizes="(min-width: 576px) 50vw, 100vw"><img src="img/malerin-1280.jpg" srcset="img/malerin-640.jpg 640w, img/malerin-1280.jpg 1280w, img/malerin-2000.jpg 2000w" sizes="(min-width: 576px) 50vw, 100vw" width="1280" height="720" alt="Nahaufnahme einer Hand, die mit dem Pinsel kräftige Farben auf eine Leinwand aufträgt" loading="lazy" decoding="async"></picture></div>
+  <div class="split__text">
+    <h2 id="macherin" class="section-title">Macherin statt Muse</h2>
+    <p>Frauen sind in deutschen Kunstmuseen noch immer unterrepräsentiert: Weniger als 10 Prozent der ausgestellten Bilder wurden von Künstlerinnen gemalt. Das Isabella-Edel-Museum gibt nun ausschließlich Frauen eine Bühne: Eine Auswahl aus über 300 Kunstwerken von 42 Künstle&shy;rinnen ist in vier Räumen zu sehen.</p>
+    <ul class="facts" aria-label="Zahlen">
+      <li><span class="facts__num">300</span><span class="facts__label">Kunstwerke</span></li>
+      <li><span class="facts__num">42</span><span class="facts__label">Künstlerinnen</span></li>
+      <li><span class="facts__num">4</span><span class="facts__label">Räume</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="quote-band" aria-label="Zitat von Isabella Edel">
+  <div class="quote-band__media"><picture><source type="image/webp" srcset="img/betrachterin-640.webp 640w, img/betrachterin-1280.webp 1280w, img/betrachterin-2000.webp 2000w" sizes="(min-width: 576px) 50vw, 100vw"><img src="img/betrachterin-1280.jpg" srcset="img/betrachterin-640.jpg 640w, img/betrachterin-1280.jpg 1280w, img/betrachterin-2000.jpg 2000w" sizes="(min-width: 576px) 50vw, 100vw" width="1280" height="853" alt="Besucherin sitzt vor einer Wand mit farbenfrohen Gemälden" loading="lazy" decoding="async"></picture></div>
+  <div class="quote-band__panel">
+    <figure class="quote quote--band"><blockquote><p>„Wann immer wir auf Beschriftungen in einem Museum „Werkstatt“ oder „unbekannter Künstler“ lesen, sollten wir in Betracht ziehen, dass dieses Bild möglicherweise von einer Frau stammt, deren Leistung nicht gewürdigt wurde.“</p></blockquote><figcaption>Isabella Edel</figcaption></figure>
+  </div>
+</section>
+
+<section class="container teasers" aria-label="Entdecken">
+  <ul class="teasers__list"><li class="teaser"><a href="kuenstlerinnen.html" class="teaser__link"><picture class="teaser__media"><source type="image/webp" srcset="img/kuenstlerin-640.webp 640w, img/kuenstlerin-1280.webp 1280w, img/kuenstlerin-2000.webp 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw"><img src="img/kuenstlerin-1280.jpg" srcset="img/kuenstlerin-640.jpg 640w, img/kuenstlerin-1280.jpg 1280w, img/kuenstlerin-2000.jpg 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw" width="1280" height="853" alt="Künstlerin im Gespräch vor ihren farbenfrohen Bildern" loading="lazy" decoding="async"></picture><span class="teaser__title">Künstlerinnen</span><span class="teaser__text">Das Isabella-Edel-Museum vereint die Werke von insgesamt 42 Künstlerinnen.</span></a></li><li class="teaser"><a href="raeume.html" class="teaser__link"><picture class="teaser__media"><source type="image/webp" srcset="img/r1-dame-hermelin-640.webp 640w, img/r1-dame-hermelin-1280.webp 1280w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw"><img src="img/r1-dame-hermelin-1280.jpg" srcset="img/r1-dame-hermelin-640.jpg 640w, img/r1-dame-hermelin-1280.jpg 1280w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw" width="1280" height="1726" alt="Renaissance-Porträt einer Dame mit Hermelin" loading="lazy" decoding="async"></picture><span class="teaser__title">Räume</span><span class="teaser__text">Im Isabella-Edel-Museum finden Sie die vier Ausstellungsräume</span></a></li><li class="teaser"><a href="museumscafe.html" class="teaser__link"><picture class="teaser__media"><source type="image/webp" srcset="img/museumscafe-640.webp 640w, img/museumscafe-1280.webp 1280w, img/museumscafe-2000.webp 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw"><img src="img/museumscafe-1280.jpg" srcset="img/museumscafe-640.jpg 640w, img/museumscafe-1280.jpg 1280w, img/museumscafe-2000.jpg 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw" width="1280" height="854" alt="Innenraum des Museumscafés" loading="lazy" decoding="async"></picture><span class="teaser__title">Museumscafé</span><span class="teaser__text">Entspannen Sie sich bei gemütlichem Ambiente, einer heißen Tasse Kaffee und einem selbst gebackenen Stück Kuchen.</span></a></li><li class="teaser"><a href="tickets.html" class="teaser__link"><picture class="teaser__media"><source type="image/webp" srcset="img/paar-galerie-640.webp 640w, img/paar-galerie-1280.webp 1280w, img/paar-galerie-2000.webp 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw"><img src="img/paar-galerie-1280.jpg" srcset="img/paar-galerie-640.jpg 640w, img/paar-galerie-1280.jpg 1280w, img/paar-galerie-2000.jpg 2000w" sizes="(min-width: 1400px) 330px, (min-width: 576px) 50vw, 100vw" width="1280" height="853" alt="Zwei Besucher betrachten abstrakte Bilder" loading="lazy" decoding="async"></picture><span class="teaser__title">Tickets</span><span class="teaser__text">Ihr Besuch im Isabella-Edel-Museum</span></a></li></ul>
+</section>
+
+<aside class="container visit-box" aria-label="Öffnungszeiten">
+  <img class="picto" src="img/icons/oeffnungszeiten.svg" width="48" height="48" alt="">
+  <p class="visit-box__label">Öffnungszeiten:</p>
+  <p class="visit-box__hours">Dienstag–Sonntag: 11–17 Uhr</p>
+  <a class="button" href="tickets.html">Tickets</a>
+</aside>
+
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__col">
+      <a class="site-footer__logo" href="index.html"><img src="img/logo-hell.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+      <address>Isabella-Edel-Stiftung<br>Brixener Straße 5<br>28215 Bremen</address>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label"><img class="picto" src="img/icons/oeffnungszeiten.svg" width="48" height="48" alt="">Öffnungszeiten</p>
+      <p>Dienstag–Sonntag: 11–17 Uhr</p>
+    </div>
+    <nav class="site-footer__col footer-nav" aria-label="Rechtliches">
+      <ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul>
+    </nav>
+  </div>
+  <p class="site-footer__exam container">Mediengestalter-Abschlussprüfung Winter 2024/25, ZFA Kassel</p>
+</footer>
+</body>
+</html>

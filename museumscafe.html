@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Museumscafé | Isabella-Edel-Museum</title>
+<meta name="description" content="Kaffee, selbst gebackener Kuchen und ein kleines Gärtchen im Museumscafé.">
+<link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
+     Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
+<script>if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+<script defer src="js/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="index.html"><img src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+    <a class="header-cta" href="tickets.html">Tickets</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
+      <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menü</span>
+    </button>
+    <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+      <ul><li><a href="index.html">Startseite</a></li><li><a href="veranstaltungen.html">Veranstaltungen</a></li><li><a href="kuenstlerinnen.html">Künstlerinnen</a></li><li><a href="raeume.html">Räume</a></li><li><a href="gruenderin.html">Die Gründerin</a></li><li><a href="museumscafe.html" aria-current="page">Museumscafé</a></li><li><a href="tickets.html" class="nav-cta">Tickets</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="inhalt">
+
+<div class="page-hero"><picture><source type="image/webp" srcset="img/museumscafe-640.webp 640w, img/museumscafe-1280.webp 1280w, img/museumscafe-2000.webp 2000w" sizes="100vw"><img src="img/museumscafe-1280.jpg" srcset="img/museumscafe-640.jpg 640w, img/museumscafe-1280.jpg 1280w, img/museumscafe-2000.jpg 2000w" sizes="100vw" width="1280" height="854" alt="Innenraum des Museumscafés mit Holztischen und warmem Licht" fetchpriority="high"></picture></div><header class="page-intro container"><h1>Museumscafé</h1></header>
+<div class="container split">
+  <div class="split__text prose">
+    <h2 class="section-title">Hinter jeder erfolgreichen Frau steht eine beeindruckende Menge Kaffee</h2>
+    <p class="lead">In unserem Museumscafé können Sie sich Ihren Rundgang Revue passieren lassen und sich erholen. Entspannen Sie sich bei gemütlichem Ambiente, einer heißen Tasse Kaffee und einem selbst gebackenen Stück Kuchen. Saisonal bieten wir zudem kleine Snacks an.</p>
+    <p>Im Winter knistert ein Feuer im Kamin, im Sommer lädt unser kleines Gärtchen zum Verweilen ein.</p>
+  </div>
+  <aside class="split__aside info-card" aria-label="Öffnungszeiten">
+    <img class="picto" src="img/icons/oeffnungszeiten.svg" width="48" height="48" alt="">
+    <p class="info-card__label">Öffnungszeiten:</p>
+    <p>Dienstag–Sonntag: 11–17 Uhr</p>
+  </aside>
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__col">
+      <a class="site-footer__logo" href="index.html"><img src="img/logo-hell.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+      <address>Isabella-Edel-Stiftung<br>Brixener Straße 5<br>28215 Bremen</address>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label"><img class="picto" src="img/icons/oeffnungszeiten.svg" width="48" height="48" alt="">Öffnungszeiten</p>
+      <p>Dienstag–Sonntag: 11–17 Uhr</p>
+    </div>
+    <nav class="site-footer__col footer-nav" aria-label="Rechtliches">
+      <ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul>
+    </nav>
+  </div>
+  <p class="site-footer__exam container">Mediengestalter-Abschlussprüfung Winter 2024/25, ZFA Kassel</p>
+</footer>
+</body>
+</html>

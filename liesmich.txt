@@ -1,0 +1,67 @@
+LIESMICH – Website Isabella-Edel-Museum
+Mediengestalter-Abschlussprüfung Winter 2024/25, ZFA Kassel
+Prüfling: [Name]  ·  Kenn-Nummer: [Nummer]
+=====================================================================
+
+START
+  Datei „index.html“ im Hauptordner per Doppelklick im Browser öffnen.
+  Es wird kein Server und keine Internetverbindung benötigt.
+
+OPTIMIERT FÜR
+  Aktuelle Version von Google Chrome bzw. Microsoft Edge (Chromium).
+  Viewports: < 576 px, ≥ 576 px, ≥ 1400 px.
+  Ansicht testen: Entwicklertools (F12) → Gerätesymbolleiste (Strg+Umschalt+M).
+
+SEITEN
+  index.html ............ Startseite mit Endlos-Slider
+  veranstaltungen.html .. Veranstaltungen (Platzhalter, kein Text vorgegeben)
+  kuenstlerinnen.html ... Künstlerinnen
+  raeume.html ........... Räume mit isometrischem Gebäudeplan
+  gruenderin.html ....... Die Gründerin
+  museumscafe.html ...... Museumscafé
+  tickets.html .......... Tickets mit Bestellformular (ohne Versandfunktion)
+  tickets-bestaetigung.html  Bestätigung nach dem Absenden (nicht im Menü)
+  impressum.html ........ Impressum
+  datenschutz.html ...... Datenschutz (Platzhalter, kein Text vorgegeben)
+
+BEDIENUNG
+  - Slider: wechselt automatisch alle 6 s; Pfeile, Punkte und Pause-Taste;
+    auf Touchgeräten wischen. Jedes Bild verlinkt auf seine Unterseite.
+  - Räume (≥ 576 px): Klick auf einen Raum im Gebäudeplan springt zur
+    Beschreibung. Smartphone (< 576 px): Sprung über die Legende unter dem Plan.
+    Am Ende jeder Raumbeschreibung: „Zurück zum Gebäudeplan“ sowie
+    Links zum vorherigen/nächsten Raum. Der angesprungene Raum wird markiert.
+  - Bilder mit Lupe (Künstlerinnen, Räume): Klick öffnet die Großansicht;
+    blättern mit Pfeilen bzw. Pfeiltasten, schließen mit ✕ oder Esc.
+  - Tickets (Reservierung, Bezahlung bei Abholung an der Ticketkasse):
+    1. Anzahl eingeben → Summe wird berechnet → „Auswahl bestätigen“
+       (mindestens ein Ticket nötig) blendet die persönlichen Angaben ein.
+    2. Pflichtfelder ausfüllen → „Bestellung abschließen und Tickets kaufen“.
+    3. Die Bestätigungsseite zeigt das Ticket (Reservierungsbestätigung).
+       „Ticket drucken“ druckt nur das Ticket (im Druckdialog auch
+       „Als PDF speichern“), „Ticket als PDF herunterladen“ speichert es
+       direkt als PDF-Datei (A4).
+    Es werden keine Daten gesendet oder gespeichert (rein clientseitig,
+    laut Aufgabe keine Formularfunktion/Bestätigungs-E-Mail gefordert).
+  - Ohne JavaScript bleibt alles nutzbar (Progressive Enhancement):
+    Menü dauerhaft sichtbar, Slider als wischbare Bildleiste, Formular komplett.
+
+ORDNERSTRUKTUR
+  css/style.css ........ Stylesheet (Mobile First)
+  js/main.js ........... JavaScript-Erweiterungen (eigener Code)
+  img/ ................. optimierte Bilder (WebP + JPG in 640/1280/2000 px),
+                         Logo, Gebäudeplan; img/icons/ Piktogramme
+  fonts/ ............... Webfonts (woff2) inkl. Lizenzen
+  docs/ ................ Dokumentation und Arbeitsplanung
+  tools/, partials/ .... Arbeitsdateien (Python-Skripte, die Piktogramme,
+                         Gebäudeplan und HTML-Seiten einmalig erzeugt haben;
+                         für den Betrieb der Website nicht nötig)
+  assets/ .............. Originaldaten (Bilder, Logo)
+
+QUELLEN / FREMDE RESSOURCEN
+  - Schrift „Cormorant Garamond“, Christian Thalmann, SIL Open Font License 1.1
+  - Schrift „Source Sans 3“, Adobe (Paul D. Hunt), SIL Open Font License 1.1
+    Beide bezogen über fontsource.org und lokal eingebunden (kein Google-CDN).
+  - Keine fremden Skripte oder Frameworks. Piktogramme und Gebäudeplan
+    sind eigene Gestaltung.
+  - Bilder und Logo: Prüfungsdaten des ZFA.

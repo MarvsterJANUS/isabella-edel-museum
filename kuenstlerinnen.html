@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Künstlerinnen | Isabella-Edel-Museum</title>
+<meta name="description" content="42 Künstlerinnen – von Käthe Kollwitz bis zu bisher übersehenen Malerinnen.">
+<link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
+     Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
+<script>if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+<script defer src="js/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-logo" href="index.html"><img src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+    <a class="header-cta" href="tickets.html">Tickets</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
+      <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menü</span>
+    </button>
+    <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
+      <ul><li><a href="index.html">Startseite</a></li><li><a href="veranstaltungen.html">Veranstaltungen</a></li><li><a href="kuenstlerinnen.html" aria-current="page">Künstlerinnen</a></li><li><a href="raeume.html">Räume</a></li><li><a href="gruenderin.html">Die Gründerin</a></li><li><a href="museumscafe.html">Museumscafé</a></li><li><a href="tickets.html" class="nav-cta">Tickets</a></li></ul>
+    </nav>
+  </div>
+</header>
+<main id="inhalt">
+
+<div class="page-hero"><picture><source type="image/webp" srcset="img/kuenstlerin-640.webp 640w, img/kuenstlerin-1280.webp 1280w, img/kuenstlerin-2000.webp 2000w" sizes="100vw"><img src="img/kuenstlerin-1280.jpg" srcset="img/kuenstlerin-640.jpg 640w, img/kuenstlerin-1280.jpg 1280w, img/kuenstlerin-2000.jpg 2000w" sizes="100vw" width="1280" height="853" alt="Eine Künstlerin präsentiert lachend ihre farbenfrohen Bilder vor Publikum" fetchpriority="high"></picture></div><header class="page-intro container"><h1>Künstlerinnen</h1></header>
+<div class="container split split--artists">
+  <div class="split__text">
+    <p class="lead">Das Isabella-Edel-Museum vereint die Werke von insgesamt 42 Künstlerinnen. Darunter befinden sich bekannte Größen wie Käthe Kollwitz und Berthe Morisot. Andere Künstlerinnen wurden aber auch vollkommen übersehen, ihre Bilder sind nun zum ersten Mal öffentlich zugänglich, darunter Karima Arat und Hafsa Khumalo. Das Besondere: Im Isabella-Edel-Museum können sich Besucher/-innen umfangreich über die Künstlerinnen informieren. Dafür sorgen hochspannende Biografien, die durch verschiedene Medien präsentiert werden.</p>
+    <ul class="facts" aria-label="Zahlen">
+      <li><span class="facts__num">42</span><span class="facts__label">Künstlerinnen</span></li>
+      <li><span class="facts__num">300</span><span class="facts__label">Kunstwerke</span></li>
+      <li><span class="facts__num">4</span><span class="facts__label">Räume</span></li>
+    </ul>
+  </div>
+  <figure class="split__aside figure artwork">
+    <a class="zoom" href="img/r4-tinte-1280.jpg" aria-label="Figur einer Frau aus violetter Tinte, die sich im Wind auflöst – Bild vergrößern"><picture><source type="image/webp" srcset="img/r4-tinte-640.webp 640w, img/r4-tinte-1280.webp 1280w" sizes="(min-width: 1400px) 480px, (min-width: 576px) 45vw, 100vw"><img src="img/r4-tinte-1280.jpg" srcset="img/r4-tinte-640.jpg 640w, img/r4-tinte-1280.jpg 1280w" sizes="(min-width: 1400px) 480px, (min-width: 576px) 45vw, 100vw" width="1280" height="1398" alt="Figur einer Frau aus violetter Tinte, die sich im Wind auflöst" loading="lazy" decoding="async"></picture></a>
+  </figure>
+</div>
+
+<section class="container artist-rooms" aria-labelledby="kuenstlerinnen-raeume">
+  <h2 id="kuenstlerinnen-raeume" class="section-title">Im Isabella-Edel-Museum finden Sie die vier Ausstellungsräume</h2>
+  <ul class="artist-rooms__list"><li class="card artist-room">
+      <div class="artist-room__head"><img class="picto" src="img/icons/r1.svg" width="48" height="48" alt=""><div><h3 class="artist-room__title">R1: Renaissance bis Rokoko</h3>
+      <p class="artist-room__subtitle">Wie Künstlerinnen die Antike wiederauferstehen lassen</p></div></div>
+      <ul class="artist-room__names"><li>Artemisia Gentileschi</li><li>Lavinia Fontana</li><li>Magdalena Haussmann</li><li>Rosaba Carriera</li><li>Anastasia Unterberg</li></ul>
+      <a class="artist-room__link" href="raeume.html#r1">Zum Raum<span class="visually-hidden"> R1: Renaissance bis Rokoko</span></a>
+    </li><li class="card artist-room">
+      <div class="artist-room__head"><img class="picto" src="img/icons/r2.svg" width="48" height="48" alt=""><div><h3 class="artist-room__title">R2: Klassizismus bis Realismus</h3>
+      <p class="artist-room__subtitle">Weibliche Kraft und Vitalität</p></div></div>
+      <ul class="artist-room__names"><li>Adélaide Labille-Guiard</li></ul>
+      <a class="artist-room__link" href="raeume.html#r2">Zum Raum<span class="visually-hidden"> R2: Klassizismus bis Realismus</span></a>
+    </li><li class="card artist-room">
+      <div class="artist-room__head"><img class="picto" src="img/icons/r3.svg" width="48" height="48" alt=""><div><h3 class="artist-room__title">R3: Das 20. Jahrhundert</h3>
+      <p class="artist-room__subtitle">Jede wirklich neue Idee ist eine Aggression</p></div></div>
+      <ul class="artist-room__names"><li>Käthe Kollwitz</li><li>Meret Oppenheim</li></ul>
+      <a class="artist-room__link" href="raeume.html#r3">Zum Raum<span class="visually-hidden"> R3: Das 20. Jahrhundert</span></a>
+    </li><li class="card artist-room">
+      <div class="artist-room__head"><img class="picto" src="img/icons/r4.svg" width="48" height="48" alt=""><div><h3 class="artist-room__title">R4: Künstlerinnen der Gegenwart</h3>
+      <p class="artist-room__subtitle">Neue Brücken schaffen</p></div></div>
+      <ul class="artist-room__names"><li>Mahbuba Elham Maqsoodi</li><li>Irina Ojovan</li><li>Joëlle Dubois</li><li>Milja Laurila</li></ul>
+      <a class="artist-room__link" href="raeume.html#r4">Zum Raum<span class="visually-hidden"> R4: Künstlerinnen der Gegenwart</span></a>
+    </li>
+  </ul>
+</section>
+
+<section class="quote-band quote-band--end" aria-label="Zitat von Isabella Edel">
+  <div class="quote-band__media"><picture><source type="image/webp" srcset="img/raeume-640.webp 640w, img/raeume-1280.webp 1280w, img/raeume-2000.webp 2000w" sizes="(min-width: 576px) 50vw, 100vw"><img src="img/raeume-1280.jpg" srcset="img/raeume-640.jpg 640w, img/raeume-1280.jpg 1280w, img/raeume-2000.jpg 2000w" sizes="(min-width: 576px) 50vw, 100vw" width="1280" height="853" alt="Heller Ausstellungssaal mit Gemälden an weißen Wänden" loading="lazy" decoding="async"></picture></div>
+  <div class="quote-band__panel">
+    <figure class="quote quote--band"><blockquote><p>„Wann immer wir auf Beschriftungen in einem Museum „Werkstatt“ oder „unbekannter Künstler“ lesen, sollten wir in Betracht ziehen, dass dieses Bild möglicherweise von einer Frau stammt, deren Leistung nicht gewürdigt wurde.“</p></blockquote><figcaption>Isabella Edel</figcaption></figure>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__col">
+      <a class="site-footer__logo" href="index.html"><img src="img/logo-hell.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+      <address>Isabella-Edel-Stiftung<br>Brixener Straße 5<br>28215 Bremen</address>
+    </div>
+    <div class="site-footer__col">
+      <p class="site-footer__label"><img class="picto" src="img/icons/oeffnungszeiten.svg" width="48" height="48" alt="">Öffnungszeiten</p>
+      <p>Dienstag–Sonntag: 11–17 Uhr</p>
+    </div>
+    <nav class="site-footer__col footer-nav" aria-label="Rechtliches">
+      <ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul>
+    </nav>
+  </div>
+  <p class="site-footer__exam container">Mediengestalter-Abschlussprüfung Winter 2024/25, ZFA Kassel</p>
+</footer>
+</body>
+</html>
