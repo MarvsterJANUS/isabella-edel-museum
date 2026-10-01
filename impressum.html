@@ -6,23 +6,35 @@
 <title>Impressum | Isabella-Edel-Museum</title>
 <meta name="description" content="Impressum der Isabella-Edel-Stiftung.">
 <link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="css/style.css">
 <!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
      Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
-<script>if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+<script>
+(function (d) {
+  if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) d.classList.add('js');
+  try { /* gespeicherte Darstellung vor dem ersten Zeichnen anwenden */
+    var t = localStorage.getItem('iem-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+    if (localStorage.getItem('iem-a11y') === 'on') d.setAttribute('data-a11y', 'on');
+  } catch (e) {}
+})(document.documentElement);
+</script>
 <script defer src="js/main.js"></script>
 </head>
 <body>
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-logo" href="index.html"><img src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+    <a class="site-logo" href="index.html"><img class="logo-light" src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"><img class="logo-dark" src="img/logo-hell.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
     <a class="header-cta" href="tickets.html">Tickets</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
       <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menü</span>
     </button>
     <nav class="main-nav" id="hauptmenue" aria-label="Hauptmenü">
-      <ul><li><a href="index.html">Startseite</a></li><li><a href="veranstaltungen.html">Veranstaltungen</a></li><li><a href="kuenstlerinnen.html">Künstlerinnen</a></li><li><a href="raeume.html">Räume</a></li><li><a href="gruenderin.html">Die Gründerin</a></li><li><a href="museumscafe.html">Museumscafé</a></li><li><a href="tickets.html" class="nav-cta">Tickets</a></li></ul>
+      <ul><li><a href="index.html">Startseite</a></li><li><a href="veranstaltungen.html">Veranstaltungen</a></li><li><a href="kuenstlerinnen.html">Künstlerinnen</a></li><li><a href="raeume.html">Räume</a></li><li><a href="gruenderin.html">Die Gründerin</a></li><li><a href="museumscafe.html">Museumscafé</a></li><li class="nav-item--cta"><a href="tickets.html" class="nav-cta">Tickets</a></li><li class="nav-prefs" hidden>
+        <button class="pref-btn" type="button" data-pref="theme" aria-pressed="false"><svg class="pref-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="icon-moon" transform="translate(0.7 -0.6)" d="M11.28 4.03A8 8 0 1 0 19.8 13.77A6.5 6.5 0 0 1 11.28 4.03z"/><g class="icon-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></g></svg><span class="pref-btn__label">Dunkler Modus</span></button>
+        <button class="pref-btn" type="button" data-pref="a11y" aria-pressed="false"><svg class="pref-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><g transform="translate(0 -0.53)"><circle class="icon-fill" cx="12" cy="7.2" r="1.5"/><path d="M7.5 10l4.5 1 4.5-1M12 11v3.3l-2.4 4.2M12 14.3l2.4 4.2"/></g></svg><span class="pref-btn__label">Barrierefreier Modus</span></button>
+      </li></ul>
     </nav>
   </div>
 </header>

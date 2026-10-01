@@ -96,12 +96,29 @@ def page_hero(name, alt, title, kicker=""):
             f'<header class="page-intro container">{k}<h1>{title}</h1></header>')
 
 
+ICON_THEME = ('<svg class="pref-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+              '<path class="icon-moon" transform="translate(0.7 -0.6)" d="M11.28 4.03A8 8 0 1 0 19.8 13.77A6.5 6.5 0 0 1 11.28 4.03z"/>'
+              '<g class="icon-sun"><circle cx="12" cy="12" r="4"/>'
+              '<path d="M12 2.5v2.2M12 19.3v2.2M4.2 4.2l1.6 1.6M18.2 18.2l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.2 19.8l1.6-1.6M18.2 5.8l1.6-1.6"/></g></svg>')
+ICON_A11Y = ('<svg class="pref-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+             '<circle cx="12" cy="12" r="10"/>'
+             # Figur um 0,53 angehoben: ihre Mitte liegt so exakt in der Kreismitte
+             '<g transform="translate(0 -0.53)"><circle class="icon-fill" cx="12" cy="7.2" r="1.5"/>'
+             '<path d="M7.5 10l4.5 1 4.5-1M12 11v3.3l-2.4 4.2M12 14.3l2.4 4.2"/></g></svg>')
+
+
 def layout(file, title, description, main_html, body_class="", nav_file=None):
     nav_file = nav_file or file
     nav = "".join(
-        f'<li><a href="{href}"{" class=\"nav-cta\"" if href == "tickets.html" else ""}'
+        f'<li{" class=\"nav-item--cta\"" if href == "tickets.html" else ""}>'
+        f'<a href="{href}"{" class=\"nav-cta\"" if href == "tickets.html" else ""}'
         f'{" aria-current=\"page\"" if href == nav_file else ""}>{label}</a></li>'
         for href, label in NAV)
+    # Darstellungs-Einstellungen (nur mit JS sichtbar, siehe main.js → initPrefs)
+    nav += f'''<li class="nav-prefs" hidden>
+        <button class="pref-btn" type="button" data-pref="theme" aria-pressed="false">{ICON_THEME}<span class="pref-btn__label">Dunkler Modus</span></button>
+        <button class="pref-btn" type="button" data-pref="a11y" aria-pressed="false">{ICON_A11Y}<span class="pref-btn__label">Barrierefreier Modus</span></button>
+      </li>'''
     fnav = "".join(
         f'<li><a href="{href}"{" aria-current=\"page\"" if href == file else ""}>{label}</a></li>'
         for href, label in NAV_FOOTER)
@@ -115,17 +132,26 @@ def layout(file, title, description, main_html, body_class="", nav_file=None):
 <title>{full_title}</title>
 <meta name="description" content="{description}">
 <link rel="icon" href="img/icons/favicon.svg" type="image/svg+xml">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="css/style.css">
 <!-- Progressive Enhancement ("Cutting the Mustard"): Die Klasse "js" wird nur in modernen
      Browsern gesetzt. Nur dann führt js/main.js seine Erweiterungen aus. -->
-<script>if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) document.documentElement.classList.add('js');</script>
+<script>
+(function (d) {{
+  if ('noModule' in HTMLScriptElement.prototype && 'IntersectionObserver' in window) d.classList.add('js');
+  try {{ /* gespeicherte Darstellung vor dem ersten Zeichnen anwenden */
+    var t = localStorage.getItem('iem-theme'); if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
+    if (localStorage.getItem('iem-a11y') === 'on') d.setAttribute('data-a11y', 'on');
+  }} catch (e) {{}}
+}})(document.documentElement);
+</script>
 <script defer src="js/main.js"></script>
 </head>
 <body{bc}>
 <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-logo" href="index.html"><img src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
+    <a class="site-logo" href="index.html"><img class="logo-light" src="img/logo.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"><img class="logo-dark" src="img/logo-hell.svg" width="121" height="84" alt="Isabella-Edel-Museum – zur Startseite"></a>
     <a class="header-cta" href="tickets.html"{" aria-current=\"page\"" if nav_file == "tickets.html" else ""}>Tickets</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="hauptmenue" hidden>
       <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menü</span>
@@ -419,18 +445,20 @@ def gruenderin():
 def museumscafe():
     main = f"""
 {page_hero("museumscafe", "Innenraum des Museumscafés mit Holztischen und warmem Licht", "Museumscafé")}
-<div class="container split">
-  <div class="split__text prose">
-    <h2 class="section-title">Hinter jeder erfolgreichen Frau steht eine beeindruckende Menge Kaffee</h2>
+<div class="container split split--cafe">
+  <div class="split__text">
     <p class="lead">In unserem Museumscafé können Sie sich Ihren Rundgang Revue passieren lassen und sich erholen. Entspannen Sie sich bei gemütlichem Ambiente, einer heißen Tasse Kaffee und einem selbst gebackenen Stück Kuchen. Saisonal bieten wir zudem kleine Snacks an.</p>
     <p>Im Winter knistert ein Feuer im Kamin, im Sommer lädt unser kleines Gärtchen zum Verweilen ein.</p>
   </div>
-  <aside class="split__aside info-card" aria-label="Öffnungszeiten">
-    {picto("oeffnungszeiten")}
-    <p class="info-card__label">Öffnungszeiten:</p>
-    <p>Dienstag–Sonntag: 11–17 Uhr</p>
+  <aside class="split__aside card visit-card" aria-label="Ihr Besuch im Museumscafé">
+    <div class="visit-card__item">{picto("oeffnungszeiten")}<div><p class="visit-card__label">Öffnungszeiten:</p><p>Dienstag–Sonntag: 11–17 Uhr</p></div></div>
+    <div class="visit-card__item">{picto("cafe")}<div><p class="visit-card__label">Museumscafé</p><p><a href="raeume.html#gebaeudeplan">Lage im Gebäudeplan</a></p></div></div>
   </aside>
 </div>
+
+{quote_band("besucherinnen-gespraech", "Gruppe von Frauen im angeregten Gespräch vor einem abstrakten Gemälde",
+            "Hinter jeder erfolgreichen Frau steht eine beeindruckende Menge Kaffee",
+            label="Motto des Museumscafés", cls="quote-band--end")}
 """
     return layout("museumscafe.html", "Museumscafé",
                   "Kaffee, selbst gebackener Kuchen und ein kleines Gärtchen im Museumscafé.", main)

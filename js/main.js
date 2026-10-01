@@ -8,6 +8,49 @@
 
 var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+/* ---------- Darstellung: Dunkler Modus & Barrierefreier Modus ----------
+   Wahl wird in localStorage gespeichert; der Inline-Script im <head> wendet sie
+   vor dem ersten Zeichnen an. Ohne Wahl gilt die Systemeinstellung. */
+const root = document.documentElement;
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+const motionOff = () => reducedMotion.matches || root.dataset.a11y === 'on';
+
+function store(key, value) {
+  try { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (e) { /* privat/gesperrt */ }
+}
+
+function initPrefs() {
+  const item = document.querySelector('.nav-prefs');
+  if (!item) return;
+  item.hidden = false;
+  const themeBtn = item.querySelector('[data-pref="theme"]');
+  const a11yBtn = item.querySelector('[data-pref="a11y"]');
+
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : systemDark.matches;
+  const sync = () => {
+    themeBtn.setAttribute('aria-pressed', String(isDark()));
+    a11yBtn.setAttribute('aria-pressed', String(root.dataset.a11y === 'on'));
+  };
+
+  themeBtn.addEventListener('click', () => {
+    const next = isDark() ? 'light' : 'dark';
+    // entspricht die Wahl dem System, keine feste Einstellung speichern
+    if ((next === 'dark') === systemDark.matches) { delete root.dataset.theme; store('iem-theme', null); }
+    else { root.dataset.theme = next; store('iem-theme', next); }
+    sync();
+  });
+
+  a11yBtn.addEventListener('click', () => {
+    if (root.dataset.a11y === 'on') { delete root.dataset.a11y; store('iem-a11y', null); }
+    else { root.dataset.a11y = 'on'; store('iem-a11y', 'on'); }
+    sync();
+    window.dispatchEvent(new Event('iem:motion'));
+  });
+
+  systemDark.addEventListener('change', sync);
+  sync();
+}
+
 /* ---------- Navigation: Burger-Menü < 1400 px ---------- */
 function initNavigation() {
   const toggle = document.querySelector('.nav-toggle');
@@ -37,8 +80,8 @@ function initNavigation() {
 }
 
 /* ---------- Endlos-Slider ---------- */
-function initSlider(root) {
-  const track = root.querySelector('.slider__track');
+function initSlider(sliderRoot) {
+  const track = sliderRoot.querySelector('.slider__track');
   const slides = [...track.children];
   const count = slides.length;
   if (count < 2) return;
@@ -55,12 +98,12 @@ function initSlider(root) {
   track.append(firstClone);
   track.prepend(lastClone);
 
-  root.classList.add('is-enhanced');
+  sliderRoot.classList.add('is-enhanced');
   track.scrollLeft = 0;
 
   let index = 1;               // Position im Track inkl. Klone (1 = erstes echtes Bild)
   let timer = null;
-  let paused = reducedMotion.matches;
+  let paused = false;
   let userPaused = false;
 
   // Steuerelemente erzeugen
@@ -73,14 +116,14 @@ function initSlider(root) {
     <button class="slider__btn" type="button" data-action="pause" aria-label="Automatischen Wechsel anhalten">❚❚</button>
     <button class="slider__btn" type="button" data-action="prev" aria-label="Vorheriges Bild">←</button>
     <button class="slider__btn" type="button" data-action="next" aria-label="Nächstes Bild">→</button>`;
-  root.append(controls);
+  sliderRoot.append(controls);
   const dots = [...controls.querySelectorAll('.slider__dot')];
   const pauseBtn = controls.querySelector('[data-action="pause"]');
 
   const realIndex = () => (index - 1 + count) % count;
 
   function render(animate = true) {
-    track.classList.toggle('no-transition', !animate || reducedMotion.matches);
+    track.classList.toggle('no-transition', !animate || motionOff());
     track.style.transform = `translateX(${-index * 100}%)`;
     const current = realIndex();
     dots.forEach((dot, i) => dot.setAttribute('aria-current', String(i === current)));
@@ -90,7 +133,7 @@ function initSlider(root) {
   function goTo(newIndex) {
     index = newIndex;
     render(true);
-    if (reducedMotion.matches) jumpIfClone();
+    if (motionOff()) jumpIfClone();
   }
 
   // Nach der Animation auf einem Klon: unsichtbar zum echten Bild springen
@@ -109,8 +152,9 @@ function initSlider(root) {
 
   function start() {
     stop();
-    if (!paused && !userPaused) timer = window.setInterval(next, 6000);
+    if (!paused && !userPaused && !motionOff()) timer = window.setInterval(next, 6000);
   }
+  window.addEventListener('iem:motion', () => { render(false); start(); });
   function stop() { window.clearInterval(timer); timer = null; }
 
   function setUserPaused(value) {
@@ -131,10 +175,10 @@ function initSlider(root) {
   });
 
   // Pausieren bei Maus über dem Slider oder Tastaturfokus darin (WCAG 2.2.2)
-  root.addEventListener('mouseenter', () => { paused = true; stop(); });
-  root.addEventListener('mouseleave', () => { paused = reducedMotion.matches; start(); });
-  root.addEventListener('focusin', () => { paused = true; stop(); });
-  root.addEventListener('focusout', (e) => { if (!root.contains(e.relatedTarget)) { paused = reducedMotion.matches; start(); } });
+  sliderRoot.addEventListener('mouseenter', () => { paused = true; stop(); });
+  sliderRoot.addEventListener('mouseleave', () => { paused = false; start(); });
+  sliderRoot.addEventListener('focusin', () => { paused = true; stop(); });
+  sliderRoot.addEventListener('focusout', (e) => { if (!sliderRoot.contains(e.relatedTarget)) { paused = false; start(); } });
 
   // Wischgesten
   let startX = null;
@@ -552,6 +596,7 @@ function initToTop() {
 }
 
 if (document.documentElement.classList.contains('js')) {
+  initPrefs();
   initNavigation();
   document.querySelectorAll('.slider').forEach(initSlider);
   initPlan();

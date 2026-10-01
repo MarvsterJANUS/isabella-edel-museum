@@ -43,6 +43,11 @@ BEDIENUNG
        direkt als PDF-Datei (A4).
     Es werden keine Daten gesendet oder gespeichert (rein clientseitig,
     laut Aufgabe keine Formularfunktion/Bestätigungs-E-Mail gefordert).
+  - Darstellung (im Menü, Desktop: runde Symbole neben „Tickets“):
+    „Dunkler Modus“ schaltet zwischen hell und dunkel (Standard: Einstellung
+    des Betriebssystems). „Barrierefreier Modus“: größere, serifenlose Schrift,
+    höherer Kontrast, unterstrichene Links, keine Animationen/kein Autoplay.
+    Die Wahl wird im Browser gespeichert (localStorage).
   - Ohne JavaScript bleibt alles nutzbar (Progressive Enhancement):
     Menü dauerhaft sichtbar, Slider als wischbare Bildleiste, Formular komplett.
 

@@ -25,6 +25,8 @@ Alle Breiten sind fließend angelegt, damit jedes Gerät seine native Breite nut
 | Violett | #443189 | einzige Akzentfarbe: Links, Buttons, Balken, Piktogramme (aus dem Logo) |
 | Violett hell | #ECE9F4 | Flächen, Böden im Gebäudeplan |
 
+**Dunkler Modus:** Alle Farben sind als CSS-Variablen angelegt. Für den dunklen Modus werden nur die Variablen getauscht: fast schwarzer, leicht violetter Grund, helle Schrift, aufgehelltes Violett für Text und Linien, helles Logo. Standard ist die Systemeinstellung (`prefers-color-scheme`, funktioniert ohne JavaScript), ein Umschalter überschreibt sie.
+
 Die Palette ist bewusst zurückhaltend, denn die Farbigkeit liefern die Gemälde. Violett steht für Würde und ist historisch die Farbe der Frauenbewegung. Damit passt es inhaltlich zum Museum. Violett auf Galerieweiß erreicht einen Kontrast von etwa 10:1 und erfüllt damit WCAG AA.
 
 ## 4. Typografie
@@ -56,6 +58,8 @@ Der Plan wurde nach der Skizze als isometrisches SVG (30°) neu gezeichnet: lang
 - **≥ 576 px:** Die Grafik wird mit `display: none` ausgeblendet. Sichtbar ist stattdessen das inline eingebundene SVG, in dem jeder Raum ein `<a href="#r1">` ist. Bei Mausberührung oder Tastaturfokus färbt sich der Raum violett, und ein Namensschild mit dem Raumtitel erscheint (CSS `:has()`). `display: none` entfernt die jeweils unsichtbare Variante auch aus der Tab-Reihenfolge und für Screenreader. Ab 1400 px steht die Legende neben dem Plan; fährt man mit der Maus über einen Legendenpunkt, hebt JavaScript den Raum im Plan hervor.
 - Der angesprungene Raum wird per CSS `:target` mit dem violetten Balken markiert und leuchtet kurz auf, damit klar ist, wo man gelandet ist.
 - Der Plan-Abschnitt hat `id="gebaeudeplan"`. Jede Raumbeschreibung endet mit „Zurück zum Gebäudeplan“ sowie Links zum vorherigen und nächsten Raum. Beim Rücksprung markiert JavaScript den zuletzt besuchten Raum im Plan und in der Legende. `scroll-margin-top` verhindert, dass die feste Kopfzeile das Sprungziel verdeckt.
+
+**Barrierefreier Modus:** Ein zweiter Umschalter vergrößert die Schrift (112,5 %), ersetzt die feine Serifenschrift durch Source Sans, hebt den Kontrast an, unterstreicht Links, verzichtet auf Kursiv- und Versal-Labels und schaltet Animationen sowie das Slider-Autoplay ab.
 
 ## 8. Mobile First und Progressive Enhancement
 
