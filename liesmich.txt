@@ -28,7 +28,9 @@ BEDIENUNG
   - Slider: wechselt automatisch alle 6 s; Pfeile, Punkte und Pause-Taste;
     auf Touchgeräten wischen. Jedes Bild verlinkt auf seine Unterseite.
   - Räume (≥ 576 px): Klick auf einen Raum im Gebäudeplan springt zur
-    Beschreibung. Smartphone (< 576 px): Sprung über die Legende unter dem Plan.
+    Beschreibung. Klick auf Museumscafé bzw. Eingang öffnet die Seite
+    „Museumscafé“ bzw. „Tickets“. Smartphone (< 576 px): Sprung über die
+    Legende unter dem Plan.
     Am Ende jeder Raumbeschreibung: „Zurück zum Gebäudeplan“ sowie
     Links zum vorherigen/nächsten Raum. Der angesprungene Raum wird markiert.
   - Bilder mit Lupe (Künstlerinnen, Räume): Klick öffnet die Großansicht;
@@ -58,9 +60,10 @@ ORDNERSTRUKTUR
                          Logo, Gebäudeplan; img/icons/ Piktogramme
   fonts/ ............... Webfonts (woff2) inkl. Lizenzen
   docs/ ................ Dokumentation und Arbeitsplanung
-  tools/, partials/ .... Arbeitsdateien (Python-Skripte, die Piktogramme,
-                         Gebäudeplan und HTML-Seiten einmalig erzeugt haben;
-                         für den Betrieb der Website nicht nötig)
+  tools/, partials/ .... Arbeitsdateien (Hilfsskripte in Python/Node.js zum Erstellen
+                         und Umwandeln der Bild- und SVG-Dateien; Bearbeitung
+                         der Bilder in Photoshop, Piktogramme und Gebäudeplan
+                         in Illustrator; für den Betrieb der Website nicht nötig)
   assets/ .............. Originaldaten (Bilder, Logo)
 
 QUELLEN / FREMDE RESSOURCEN

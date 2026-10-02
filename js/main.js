@@ -215,8 +215,11 @@ function initSlider(sliderRoot) {
 function initPlan() {
   const legend = document.querySelector('.plan__legend');
   if (!legend) return;
-  legend.querySelectorAll('a[href^="#r"]').forEach((link) => {
-    const room = document.getElementById(`plan-${link.hash.slice(1)}`);
+  // Legendenpunkt → Bereich im Plan (Räume per Sprungmarke, Café/Tickets per Unterseite)
+  const areas = { 'museumscafe.html': 'cafe', 'tickets.html': 'eingang' };
+  legend.querySelectorAll('a').forEach((link) => {
+    const href = link.getAttribute('href');
+    const room = document.getElementById(`plan-${href.startsWith('#') ? href.slice(1) : areas[href]}`);
     if (!room) return;
     const on = () => room.classList.add('is-active');
     const off = () => room.classList.remove('is-active');
@@ -445,7 +448,7 @@ async function downloadTicket(ticket, data) {
   for (const [label, value] of data.rows) {
     y += 34; text(label, 48, y - 8, `600 18px ${sans}`); text(value, SPLIT - 40, y - 8, `400 18px ${sans}`, C.ink, 'right'); line(y + 4); y += 4;
   }
-  y += 42; text('Summe', 48, y - 10, `600 18px ${sans}`); text(`${data.sum} Euro`, SPLIT - 40, y - 8, `700 26px ${sans}`, C.ink, 'right'); // Canvas kennt keine Versalziffern-Option für Cormorant line(y + 4);
+  y += 42; text('Summe', 48, y - 10, `600 18px ${sans}`); text(`${data.sum} Euro`, SPLIT - 40, y - 8, `700 26px ${sans}`, C.ink, 'right'); line(y + 4); // Canvas kennt keine Versalziffern-Option für Cormorant
   text(`Reservierung ${data.number} · ${data.date}`, 48, H - 36, `400 15px ${sans}`, C.soft);
 
   // Abrissteil

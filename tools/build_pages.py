@@ -284,7 +284,7 @@ def placeholder_page(file, title, img, alt, impressions=()):
     main = f"""
 {page_hero(img, alt, title)}
 <div class="container prose">
-  <p class="placeholder" role="note"><strong>Platzhalter:</strong> Für den Menüpunkt „{title}“ liegt im vorgegebenen Text (Website.docx) noch kein Inhalt vor. Diese Seite ist im Layout angelegt und wird ergänzt, sobald der Text geliefert wird.</p>
+  <p class="placeholder" role="note"><strong>Hinweis:</strong> Für die Seite „{title}“ liegen keine Inhalte vor – es wurden keine Texte vorgegeben.</p>
 </div>
 {row}
 """
@@ -414,7 +414,7 @@ def raeume():
   <div class="plan__layout">
     <figure class="plan__figure">
       <!-- Smartphone (< 576 px): nicht anklickbare Grafik -->
-      <img class="plan__static" src="img/gebaeudeplan.svg" width="828" height="502" alt="Isometrischer Gebäudeplan: Die Räume R3 und R4 liegen im langen Flügel links. R2 und R1 bilden rechts davon einen L-förmigen Gebäudeteil. In der Innenecke des L liegt der Eingang mit Ticketverkauf, vorne links befinden sich Museumscafé und Toiletten.">
+      <img class="plan__static" src="img/gebaeudeplan.svg" width="719" height="513" alt="Isometrischer Gebäudeplan: Im langen Flügel links liegen R3 (vorne) und R4 (hinten). Rechts daneben bilden R2 und R1 einen L-förmigen Gebäudeteil. Vorne links liegt das Museumscafé mit Toiletten, zwischen Café und R1 der Eingang mit Glasfront und Ticketverkauf.">
       <!-- Tablet/Desktop (≥ 576 px): klickbare Räume -->
       <div class="plan__interactive">{plan_inline}</div>
     </figure>

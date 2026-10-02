@@ -16,6 +16,8 @@ Jede Seite folgt derselben Abfolge: feste Kopfzeile mit Logo, Menü und „Ticke
 
 Alle Breiten sind fließend, jedes Gerät nutzt seine native Breite.
 
+**Impressum und Datenschutz in der Fußzeile:** Die beiden Menüpunkte aus dem vorgegebenen Text stehen bewusst nicht in der Hauptnavigation, sondern auf jeder Seite in der Fußzeile. Das ist die Stelle, an der Nutzer rechtliche Angaben erwarten. Die Hauptnavigation bleibt so auf die Inhalte des Museums konzentriert und endet mit dem „Tickets“-Button als klarem Abschluss. Mit neun Punkten wäre die Navigation bei 1400 px zu gedrängt und würde im Barrierefreien Modus mit größerer Schrift umbrechen. Beide Seiten sind von jeder Seite aus mit einem Klick erreichbar.
+
 ## 3. Farbe
 
 | Farbe | Wert | Einsatz |

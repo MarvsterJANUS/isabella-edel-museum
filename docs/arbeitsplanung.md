@@ -3,7 +3,7 @@
 Prüfling: [Name] · Kenn-Nummer: [Nummer]
 
 **Entwicklungsumgebung:** PC mit Windows 10, Full-HD-Monitor, Maus/Tastatur · Smartphone (Android/iOS) zum Testen
-**Software:** Visual Studio Code (Editor, Erweiterung „Live Server“), Microsoft Edge/Google Chrome inkl. Entwicklertools, Adobe Photoshop (Bilder), Adobe Illustrator (Piktogramme, Gebäudeplan), Figma (Entwurf), W3C-Validator (online)
+**Software:** Visual Studio Code (Editor, Erweiterung „Live Server“), Microsoft Edge/Google Chrome inkl. Entwicklertools, Adobe Photoshop (Bilder), Adobe Illustrator (Piktogramme, Gebäudeplan), Figma (Entwurf), Python-Hilfsskripte (Erstellen und Umwandeln der Bilddateien), W3C-Validator (online)
 
 ## Teil a) Konzeption (10 Arbeitstage)
 
@@ -25,7 +25,7 @@ Prüfling: [Name] · Kenn-Nummer: [Nummer]
 | Nr. | Arbeitsschritt | Zeit | Hard-/Software |
 |---|---|---|---|
 | 1 | Ordnerstruktur, HTML-Grundgerüst, Kopf-/Fußzeile, Navigation | 0:30 h | VS Code |
-| 2 | Bilder skalieren und exportieren (WebP/JPG, 640/1280/2000 px) | 0:30 h | Photoshop (Export als) |
+| 2 | Bilder bearbeiten, skalieren und umwandeln (WebP/JPG, 640/1280/2000 px) | 0:30 h | Photoshop, Python-Skript |
 | 3 | Basis-CSS: Schriften, Farben, Typografie, Raster mobil | 0:45 h | VS Code, Edge-Entwicklertools |
 | 4 | Startseite inkl. Slider (HTML/CSS, danach JavaScript) | 1:00 h | VS Code, Edge |
 | 5 | Piktogramme und Gebäudeplan als SVG exportieren und einbinden | 0:30 h | Illustrator, VS Code |

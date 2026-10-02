@@ -870,7 +870,9 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
   .facts { column-gap: 2.5rem; }
   .visit-box__hours { flex-basis: auto; font-size: 1.5rem; }
   .visit-box .button { margin-top: 0; }
-  .split--home { align-items: center; }
+  /* Startseite: Bild über dem Text – alle violetten Balken (Zitat, Überschrift) stehen auf derselben linken Kante */
+  .split--home { grid-template-columns: 1fr; gap: 2.5rem; }
+  .split--home .split__text { max-width: 40rem; }
 
   .teasers__list { grid-template-columns: 1fr 1fr; gap: 3.5rem 2.5rem; }
 
@@ -881,8 +883,8 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
   .room__wall li { margin-bottom: 1.5rem; break-inside: avoid; }
   .artist-rooms__list { grid-template-columns: 1fr 1fr; }
 
-  .quote-band { grid-template-columns: 1fr 1fr; }
-  .quote-band__media img { height: 100%; min-height: 26rem; }
+  /* Bild über dem Zitat: der weiße Balken steht auf derselben linken Kante wie Zitat- und Überschriftbalken */
+  .quote-band__media img { height: 24rem; }
   .quote-band__panel { padding: 4.5rem var(--gutter); }
 
   .impressions__list { grid-template-columns: repeat(3, 1fr); }
@@ -963,13 +965,16 @@ input:focus-visible { outline: 3px solid var(--violet); outline-offset: 1px; bor
   .home-intro .quote { margin: 0.5rem 0 0; }
 
   .split { grid-template-columns: 7fr 5fr; gap: 7rem; }
-  .split--home { grid-template-columns: 6fr 5fr; }
+  /* gleiches Spaltenraster wie .home-intro: Bild unter dem Titel, Text unter dem Zitat → Balken auf einer Linie */
+  .split--home { grid-template-columns: 5fr 7fr; align-items: center; }
 
   .teasers__list { grid-template-columns: repeat(4, 1fr); gap: 3rem; }
 
-  .quote-band { grid-template-columns: 5fr 7fr; }
-  .quote-band__media img { min-height: 34rem; }
-  .quote-band__panel { padding: 7rem max(var(--gutter), calc((100vw - 1320px) / 2)) 7rem 6rem; }
+  /* Spalten wie .home-intro / .split--home (5fr | 7rem | 7fr im Container): Bild endet an der rechten Kante
+     der linken Spalte, der Zitatbalken steht genau auf der Linie der übrigen Balken */
+  .quote-band { grid-template-columns: calc(max(var(--gutter), (100% - 1320px) / 2) + (min(100% - 2 * var(--gutter), 1320px) - 7rem) * 5 / 12) 1fr; }
+  .quote-band__media img { height: 100%; min-height: 34rem; }
+  .quote-band__panel { padding: 7rem max(var(--gutter), calc((100% - 1320px) / 2)) 7rem 7rem; }
   .quote--band p { max-width: 30ch; }
   .gallery__list { columns: 4; }
   .artist-rooms__list { grid-template-columns: repeat(4, 1fr); }
